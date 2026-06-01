@@ -2,7 +2,7 @@ import medmnist
 from medmnist import INFO
 from torch.utils.data import DataLoader
 
-data_flag = 'pathmnist'
+data_flag = 'chestmnist'
 
 info = INFO[data_flag]
 DataClass = getattr(medmnist, info['python_class'])
