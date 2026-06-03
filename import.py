@@ -17,3 +17,12 @@ test_dataset = DataClass(split='test', download=True)
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+# Print dataset
+print("Train samples:", len(train_dataset))
+print("Validation samples:", len(val_dataset))
+print("Test samples:", len(test_dataset))
+
+images, labels = next(iter(train_loader))
+print("Image batch shape:", images.shape)
+print("Label batch shape:", labels.shape)
