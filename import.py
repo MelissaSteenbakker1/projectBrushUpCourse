@@ -1,4 +1,5 @@
 import medmnist
+import torch torchvision medmnist
 from medmnist import INFO
 from torch.utils.data import DataLoader
 
