@@ -38,5 +38,6 @@ print("Test samples:", len(test_dataset))
 
 images, labels = next(iter(train_loader))
 
-print("Image batch shape:", images.shape)
-print("Label batch shape:", labels.shape)
+print(images.shape)
+print(labels.shape)
+print(labels[0])
