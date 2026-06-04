@@ -1,3 +1,4 @@
+import time
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.multioutput import MultiOutputClassifier
@@ -7,8 +8,8 @@ from importdata import load_chestmnist_dataset
 
 def dataset_to_flat_arrays(dataset):
     """
-    Sets ChestMNIST images to flat sklearn-input.
-    From 28x28 pixels to 784 features.
+    Convert ChestMNIST images to flat sklearn input.
+    28x28 pixels becomes 784 features.
     """
 
     X = dataset.imgs.reshape(len(dataset.imgs), -1) / 255.0
@@ -19,7 +20,7 @@ def dataset_to_flat_arrays(dataset):
 
 def predict_probabilities(model, X):
     """
-    Gets the probability of label=1.
+    Get the probability that each label is present.
     """
 
     probabilities = []
@@ -49,13 +50,18 @@ def main():
 
     model = MultiOutputClassifier(
         LogisticRegression(
-            max_iter=1000,
-            class_weight="balanced"
+            max_iter=100,
+            class_weight="balanced",
+            solver="liblinear"
         )
     )
 
     print("Training Logistic Regression baseline...")
+
+    start = time.time()
     model.fit(X_train, y_train)
+    end = time.time()
+    print(f"Training took {end - start:.1f} seconds")
 
     val_probs = predict_probabilities(model, X_val)
     test_probs = predict_probabilities(model, X_test)
@@ -66,6 +72,7 @@ def main():
     print("Baseline: Logistic Regression")
     print(f"Validation AUC: {val_auc:.4f}")
     print(f"Test AUC: {test_auc:.4f}")
+
 
 if __name__ == "__main__":
 
