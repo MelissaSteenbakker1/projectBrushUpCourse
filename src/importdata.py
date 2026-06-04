@@ -3,41 +3,71 @@ from medmnist import INFO
 from torch.utils.data import DataLoader
 from torchvision import transforms
 
-data_flag = 'chestmnist'
+def load_chestmnist_dataset(split):
 
-info = INFO[data_flag]
-DataClass = getattr(medmnist, info['python_class'])
+    """
 
-transform = transforms.ToTensor()
+    Load one ChestMNIST dataset split.
 
-train_dataset = DataClass(
-    split='train',
-    transform=transform,
-    download=True
-)
+    split = 'train', 'val' or 'test'
 
-val_dataset = DataClass(
-    split='val',
-    transform=transform,
-    download=True
-)
+    """
 
-test_dataset = DataClass(
-    split='test',
-    transform=transform,
-    download=True
-)
+    data_flag = "chestmnist"
 
-train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
-val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
-test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+    info = INFO[data_flag]
+    DataClass = getattr(medmnist, info["python_class"])
+    transform = transforms.ToTensor()
 
-print("Train samples:", len(train_dataset))
-print("Validation samples:", len(val_dataset))
-print("Test samples:", len(test_dataset))
+    dataset = DataClass(
+        split=split,
+        transform=transform,
+        download=True
+    )
 
-images, labels = next(iter(train_loader))
+    return dataset
 
-print(images.shape)
-print(labels.shape)
-print(labels[0])
+def get_chestmnist_loaders(batch_size=64):
+
+    """
+
+    Make train, validation and test DataLoaders.
+
+    """
+
+    train_dataset = load_chestmnist_dataset("train")
+    val_dataset = load_chestmnist_dataset("val")
+    test_dataset = load_chestmnist_dataset("test")
+
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=batch_size,
+        shuffle=True
+    )
+
+    val_loader = DataLoader(
+        val_dataset,
+        batch_size=batch_size,
+        shuffle=False
+    )
+
+    test_loader = DataLoader(
+        test_dataset,
+        batch_size=batch_size,
+        shuffle=False
+    )
+
+    return train_loader, val_loader, test_loader
+
+if __name__ == "__main__":
+
+    train_loader, val_loader, test_loader = get_chestmnist_loaders()
+
+    print("Train batches:", len(train_loader))
+    print("Validation batches:", len(val_loader))
+    print("Test batches:", len(test_loader))
+
+    images, labels = next(iter(train_loader))
+
+    print("Image batch shape:", images.shape)
+    print("Label batch shape:", labels.shape)
