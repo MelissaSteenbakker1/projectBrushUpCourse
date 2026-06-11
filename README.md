@@ -179,26 +179,39 @@ Utility script used to verify:
 ## Running the Project
 
 ### Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
 ### Verify PyTorch installation
+```bash
 python src/pytorch.py
+```
 
 ### Inspect the dataset
+```bash
 python src/importdata.py
+```
 
 ### Visualize an image
+```bash
 python src/viewimg.py
+```
 
 ### Run the Logistic Regression baseline
+```bash
 python src/baseline.py
+```
 
 ### Train the CNN
+```bash
 python src/train.py
+```
 
 ### Evaluate the CNN
+```bash
 python src/evaluate.py
-
+```
 ---
 
 ## Evaluation
