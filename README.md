@@ -16,11 +16,12 @@ Image size: 28 × 28 pixels (grayscale)
 
 ## Repository Structure
 
+```text
 projectBrushUpCourse/
 │
 ├── src/
 │   ├── images/
-│   │   └── generated images and visualisations
+│   │   └── sample.png
 │   │
 │   ├── baseline.py
 │   ├── evaluate.py
@@ -28,12 +29,12 @@ projectBrushUpCourse/
 │   ├── model.py
 │   ├── pytorch.py
 │   ├── train.py
-│   ├── viewing.py
+│   ├── viewimg.py
 │   └── best_model.pth
 │
 ├── README.md
 └── requirements.txt
-
+```
 ---
 
 ## Dataset
