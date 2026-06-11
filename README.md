@@ -101,6 +101,7 @@ For faster experimentation, the baseline currently trains on the first 10,000 tr
 
 Defines the CNN architecture.
 
+```text
 Architecture:
 Input (1×28×28)
 ↓
@@ -123,6 +124,7 @@ Linear (1568 → 128)
 ReLU
 ↓
 Linear (128 → 14)
+```
 
 The final layer contains 14 outputs, one for each ChestMNIST label.
 
