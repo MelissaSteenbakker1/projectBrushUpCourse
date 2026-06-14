@@ -3,6 +3,9 @@ from medmnist import INFO
 from torch.utils.data import DataLoader
 from torchvision import transforms
 
+# Data will be downloaded to and loaded from this folder. This folder is excluded from version control using .gitignore.
+DATA_ROOT = "data/raw"
+
 def load_chestmnist_dataset(split):
 
     """
@@ -22,7 +25,8 @@ def load_chestmnist_dataset(split):
     dataset = DataClass(
         split=split,
         transform=transform,
-        download=True
+        download=True,
+        root=DATA_ROOT
     )
 
     return dataset
