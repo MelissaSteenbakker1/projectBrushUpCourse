@@ -3,6 +3,9 @@ import torch.nn as nn
 from model import ChestMNISTModel
 from importdata import get_chestmnist_loaders
 import yaml
+import os
+import json
+from datetime import datetime
 
 with open("./configs/cnn.yaml") as f:
     config = yaml.safe_load(f)
@@ -13,6 +16,16 @@ def train():
     # Use GPU if available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
+
+    # Create a unique output folder for this run based on the current time
+    run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_dir = f"outputs/run_{run_id}"
+    os.makedirs(output_dir, exist_ok=True)
+    print(f"Saving outputs to: {output_dir}")
+
+    # Save the config used for this run so it can be reproduced
+    with open(f"{output_dir}/config.yaml", "w") as f:
+        yaml.dump(config, f)
 
     train_loader, val_loader, _ = get_chestmnist_loaders(batch_size=config["batch_size"])
 
@@ -66,9 +79,14 @@ def train():
         # Save the model whenever validation loss improves
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
-            torch.save(model.state_dict(), "best_model.pth")
+            torch.save(model.state_dict(), f"{output_dir}/model.pt")
             print(f"  -> Saved best model (val loss: {best_val_loss:.4f})")
-
+            
+    # Save final metrics after all epochs are done
+    metrics = {"best_val_loss": best_val_loss}
+    with open(f"{output_dir}/metrics.json", "w") as f:
+        json.dump(metrics, f, indent=2)
+    print(f"Saved metrics to {output_dir}/metrics.json")
 
 if __name__ == "__main__":
     train()
