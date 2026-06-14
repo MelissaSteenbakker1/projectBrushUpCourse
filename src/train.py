@@ -2,26 +2,30 @@ import torch
 import torch.nn as nn
 from model import ChestMNISTModel
 from importdata import get_chestmnist_loaders
+import yaml
 
-def train(num_epochs=20, batch_size=64, learning_rate=0.001):
+with open("./configs/cnn.yaml") as f:
+    config = yaml.safe_load(f)
+
+
+def train():
 
     # Use GPU if available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
-    train_loader, val_loader, _ = get_chestmnist_loaders(batch_size=batch_size)
+    train_loader, val_loader, _ = get_chestmnist_loaders(batch_size=config["batch_size"])
 
     model = ChestMNISTModel(num_classes=14).to(device)
 
-    # BCEWithLogitsLoss is used because this is a multi-label problem, each of the 14 conditions
-    # is an independent binary classification
+    # BCEWithLogitsLoss is used because this is a multi-label problem, each of the 14 conditions is an independent binary classification
     criterion = nn.BCEWithLogitsLoss()
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    optimizer = torch.optim.Adam(model.parameters(), lr=config["learning_rate"])
 
     best_val_loss = float("inf")
 
-    for epoch in range(num_epochs):
+    for epoch in range(config["epochs"]):
 
         # Training
         model.train()
@@ -56,7 +60,7 @@ def train(num_epochs=20, batch_size=64, learning_rate=0.001):
 
         avg_val_loss = val_loss / len(val_loader)
 
-        print(f"Epoch {epoch+1}/{num_epochs} — Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        print(f"Epoch {epoch+1}/{config['epochs']} — Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
 
         # Checkpointing
         # Save the model whenever validation loss improves
