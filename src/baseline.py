@@ -33,6 +33,11 @@ def predict_probabilities(model, X):
 
 
 def main():
+    """
+    Baseline: multi-label classification using logistic regression 
+    (one binary classifier per label via MultiOutputClassifier).
+    """
+
     train_dataset = load_chestmnist_dataset("train")
     val_dataset = load_chestmnist_dataset("val")
     test_dataset = load_chestmnist_dataset("test")
@@ -69,7 +74,7 @@ def main():
     val_auc = roc_auc_score(y_val, val_probs, average="macro")
     test_auc = roc_auc_score(y_test, test_probs, average="macro")
 
-    print("Baseline: Logistic Regression")
+    print("Baseline: Logistic Regression (multi-label classifier)")
     print(f"Validation AUC: {val_auc:.4f}")
     print(f"Test AUC: {test_auc:.4f}")
 

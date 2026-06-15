@@ -92,10 +92,12 @@ The dataset is automatically downloaded if it is not already available.
 
 ### baseline.py
 
-Implements the classical machine learning baseline using:
-* Logistic Regression
-* MultiOutputClassifier
+Implements the classical machine learning baseline classifier using:
+* Logistic Regression (as the base binary classifier)
+* MultiOutputClassifier (one classifier per label)
 * ROC-AUC evaluation
+
+This baseline is a multi-label classifier built from 14 independent logistic regression models, one for each ChestMNIST label.
 
 The images are flattened from:
 28 × 28 → 784 features
