@@ -14,6 +14,8 @@ def load_chestmnist_dataset(split):
     Load one ChestMNIST dataset split.
     split = 'train', 'val' or 'test'
     """
+    os.makedirs(DATA_ROOT, exist_ok=True)
+
 
     data_flag = "chestmnist"
     info = INFO[data_flag]

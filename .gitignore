@@ -1,7 +1,2 @@
-data/raw
 outputs/
-*.pth
-*.pt
-__pycache__/
-*.pyc
-.env
+data/raw
