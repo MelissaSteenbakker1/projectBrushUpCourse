@@ -1,4 +1,3 @@
-# projectBrushUpCourse
 # Medical AI Project – AI Programming Brush-up
 
 ## Project Description
