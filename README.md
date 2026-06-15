@@ -19,19 +19,27 @@ Image size: 28 × 28 pixels (grayscale)
 ```text
 projectBrushUpCourse/
 │
+├── configs/
+│   └── cnn.yaml              # Training configuration (hyperparameters, paths)
+│
+├── data/
+│   ├── raw/                  # Downloaded dataset (excluded from git)
+│   └── splits/               # Fixed train/val/test split ID files
+│       ├── train_ids.csv
+│       ├── val_ids.csv
+│       └── test_ids.csv
+│
+├── outputs/                  # Saved models and results (excluded from git)
+│
 ├── src/
-│   ├── images/
-│   │   └── sample.png
-│   │
 │   ├── baseline.py
 │   ├── evaluate.py
 │   ├── importdata.py
 │   ├── model.py
-│   ├── pytorch.py
 │   ├── train.py
-│   ├── viewimg.py
-│   └── best_model.pth
+│   └── viewimg.py
 │
+├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
@@ -39,7 +47,7 @@ projectBrushUpCourse/
 
 ## Dataset
 
-The project uses the ChestMNIST dataset from MedMNIST.
+The project uses the ChestMNIST dataset from MedMNIST. The splits are fixed and standardized by the library.
 
 Official dataset split:
 
@@ -49,6 +57,8 @@ Official dataset split:
 | Validation |  11,219 |
 | Test       |  22,433 |
 | Total      | 112,120 |
+
+Split indices are exported to data/splits/ on first run and committed to version control for documentation purposes.
 
 ChestMNIST is a dataset designed for multi-label classification, meaning that a single chest X-ray image can be associated with multiple medical conditions at the same time.
 
@@ -74,6 +84,7 @@ Responsible for loading the ChestMNIST dataset and creating PyTorch DataLoaders.
 Functions:
 
 * `load_chestmnist_dataset(split)`
+* `save_split_ids()`
 * `get_chestmnist_loaders(batch_size)`
 
 The dataset is automatically downloaded if it is not already available.
@@ -132,17 +143,12 @@ The final layer contains 14 outputs, one for each ChestMNIST label.
 
 ### train.py
 
-Trains the CNN model.
+Trains the CNN using settings from `configs/cnn.yaml`.
 
 Configuration:
 * Optimizer: Adam
 * Loss Function: BCEWithLogitsLoss
-* Epochs: 20
-* Batch Size: 64
-* Learning Rate: 0.001
-
-The best-performing model on the validation set is automatically saved as:
-best_model.pth
+* Output: Best model saved to `outputs/`
 
 ---
 
@@ -183,19 +189,9 @@ Utility script used to verify:
 pip install -r requirements.txt
 ```
 
-### Verify PyTorch installation
-```bash
-python src/pytorch.py
-```
-
 ### Inspect the dataset
 ```bash
 python src/importdata.py
-```
-
-### Visualize an image
-```bash
-python src/viewimg.py
 ```
 
 ### Run the Logistic Regression baseline
@@ -205,7 +201,7 @@ python src/baseline.py
 
 ### Train the CNN
 ```bash
-python src/train.py
+python src/train.py --config configs/cnn.yaml
 ```
 
 ### Evaluate the CNN
