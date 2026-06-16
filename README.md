@@ -151,8 +151,7 @@ python src/train.py
 ```
 The training script uses the settings from ``` configs/cnn.yaml ```
 
-The model with the lowest validation loss is saved as the best model in `outputs/`.
-
+Each run is saved to `outputs/run_<timestamp>/` containing the best model weights (`model.pt`), settings used (`config.yaml`) and training metrics (`metrics.json`).
 ### 6. Evaluate the CNN Model
 
 After training, evaluate the saved model on the test set:
