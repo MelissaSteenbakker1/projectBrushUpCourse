@@ -156,7 +156,21 @@ The evaluation script loads the trained CNN model and calculates the macro ROC A
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## File Descriptions
+* ```baseline.py``` runs the Logistic Regression baseline model.
+* ```evaluate.py``` evaluates the trained CNN model on the test set.
+* ```importdata.py``` loads the ChestMNIST dataset and creates the datasets.
+* ```model.py``` defines the CNN.
+* ```pytorch.py``` checks the PyTorch installation and whether a GPU is available.
+* ```train.py``` trains the CNN model and saves the best performing model.
+* ```configs/cnn.yaml``` stores the training configuration, such as the batch size, learning rate and number of epochs.
+* `data/splits/` contains CSV files with the sample IDs for the training, validation and test sets.
+* ```requirements.txt``` lists the Python packages needed to run the project.
+* ```best_model.pth``` stores the saved model weights.
 
+## Authors
+* Kai
+* Melissa
 
 
 [JQuery-url]: https://jquery.com 
