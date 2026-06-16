@@ -4,7 +4,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import roc_auc_score
 from importdata import load_chestmnist_dataset
+import yaml
+import json
 
+with open("configs/cnn.yaml") as f:
+    config = yaml.safe_load(f)
 
 def dataset_to_flat_arrays(dataset):
     """
@@ -46,8 +50,8 @@ def main():
     X_val, y_val = dataset_to_flat_arrays(val_dataset)
     X_test, y_test = dataset_to_flat_arrays(test_dataset)
 
-    X_train = X_train[:10000]
-    y_train = y_train[:10000]
+    X_train = X_train[:config["train_subset"]]
+    y_train = y_train[:config["train_subset"]]
 
     print("Train shape:", X_train.shape)
     print("Validation shape:", X_val.shape)
@@ -77,6 +81,14 @@ def main():
     print("Baseline: Logistic Regression (multi-label classifier)")
     print(f"Validation AUC: {val_auc:.4f}")
     print(f"Test AUC: {test_auc:.4f}")
+
+    # Save the baseline model's results for later comparison
+    results = {"val_auc": round(val_auc, 4), "test_auc": round(test_auc, 4)}
+    with open("outputs/baseline/baseline_results.json", "w") as f:
+        json.dump(results, f)
+    print("Saved baseline results to outputs/baseline/baseline_results.json")
+
+    
 
 
 if __name__ == "__main__":
