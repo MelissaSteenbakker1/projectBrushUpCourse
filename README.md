@@ -34,10 +34,10 @@ This project investigates the use of machine learning and deep learning for medi
 
 The goal is to compare a traditional machine learning approach (Logistic Regression) with a Convolutional Neural Network (CNN) implemented in PyTorch. The project follows a complete machine learning workflow, including data loading, preprocessing, training, validation, evaluation, and model comparison.
 
-Dataset: ChestMNIST
-Task: Multi-label classification of chest X-ray images
-Number of labels: 14
-Image size: 28 × 28 pixels (grayscale)
+* Dataset: ChestMNIST
+* Task: Multi-label classification of chest X-ray images
+* Number of labels: 14
+* Image size: 28 × 28 pixels (grayscale)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
