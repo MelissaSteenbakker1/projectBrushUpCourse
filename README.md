@@ -124,9 +124,7 @@ To run the Logistic Regression baseline, use:
 ```
 python src/baseline.py
 ```
-The baseline model is a traditional machine learning model. It flattens each 28 × 28 image into a vector of 784 pixel values and trains a Logistic Regression classifier for each of the 14 labels.
-
-This gives a simple model to compare the CNN against.
+The baseline model is a traditional machine learning model. It flattens each 28 × 28 image into a vector of 784 pixel values and trains a Logistic Regression classifier for each of the 14 labels. Finally, it saves the val and test ROC AUC scores to `outputs/baseline/baseline_results.json`.
 
 ### 4. Check the Configuration
 
@@ -161,7 +159,7 @@ After training, evaluate the saved model on the test set:
 ```
 python src/evaluate.py
 ```
-The evaluation script loads the trained CNN model and calculates the macro ROC AUC score on the test set.
+Loads the most recent trained model from `outputs/` and prints a side-by-side comparison of the baseline and CNN macro ROC AUC on the test set.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
