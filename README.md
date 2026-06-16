@@ -142,7 +142,8 @@ seed: 42
 batch_size: 64
 learning_rate: 0.001
 epochs: 25
-train_subset: 10000
+train_subset: 1000
+```
 
 ### 5. Train the CNN Model
 
