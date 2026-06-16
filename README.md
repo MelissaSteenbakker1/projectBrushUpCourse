@@ -111,7 +111,14 @@ python src/importdata.py
 ```
 This script loads the ChestMNIST dataset and creates DataLoaders for the training, validation and test sets. It also saves the split IDs in the data/splits/ folder.
 
-### 2. Run the Baseline Model
+### 2. Inspect the Data
+
+```
+python src/inspect_data.py
+```
+Prints split sizes, label distributions, and checks for class imbalance. Saves an image montage to `outputs/images/`. Run this before training to check the data.
+
+### 3. Run the Baseline Model
 
 To run the Logistic Regression baseline, use:
 ```
@@ -121,7 +128,7 @@ The baseline model is a traditional machine learning model. It flattens each 28 
 
 This gives a simple model to compare the CNN against.
 
-### 3. Check the Configuration
+### 4. Check the Configuration
 
 Before training the CNN model, check the configuration file:
 ```
@@ -130,13 +137,14 @@ configs/cnn.yaml
 This file contains the training settings for the CNN model, such as the batch size, learning rate and number of epochs.
 
 Our configuration:
-seed: 42 
-batch_size: 64 
-learning_rate: 0.001 
-epochs: 25 
+```yaml
+seed: 42
+batch_size: 64
+learning_rate: 0.001
+epochs: 25
 train_subset: 10000
 
-### 4. Train the CNN Model
+### 5. Train the CNN Model
 
 To train the Convolutional Neural Network, use:
 ```
@@ -144,9 +152,9 @@ python src/train.py
 ```
 The training script uses the settings from ``` configs/cnn.yaml ```
 
-The model with the lowest validation loss is saved as the best model.
+The model with the lowest validation loss is saved as the best model in `outputs/`.
 
-### 5. Evaluate the CNN Model
+### 6. Evaluate the CNN Model
 
 After training, evaluate the saved model on the test set:
 ```
@@ -157,20 +165,19 @@ The evaluation script loads the trained CNN model and calculates the macro ROC A
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## File Descriptions
-* `baseline.py` runs the Logistic Regression baseline model.
-* `evaluate.py` evaluates the trained CNN model on the test set.
-* `importdata.py` loads the ChestMNIST dataset and creates the datasets.
-* `model.py` defines the CNN.
-* `pytorch.py` checks the PyTorch installation and whether a GPU is available.
-* `train.py` trains the CNN model and saves the best performing model.
+* `src/baseline.py` runs the Logistic Regression baseline model.
+* `src/evaluate.py` evaluates the trained CNN model on the test set.
+* `src/importdata.py` loads the ChestMNIST dataset and creates the datasets.
+* `src/inspect_data.py` inspects the data: shapes, label distribution and image montage
+* `src/model.py` defines the CNN.
+* `src/train.py` trains the CNN model and saves the best performing model.
 * `configs/cnn.yaml` stores the training configuration, such as the batch size, learning rate and number of epochs.
 * `data/splits/` contains CSV files with the sample IDs for the training, validation and test sets.
 * `requirements.txt` lists the Python packages needed to run the project.
-* `best_model.pth` stores the saved model weights.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Authors
-* Kai
-* Melissa
+* Kai Rook - kai.rook@student.uva.nl
+* Melissa Steenbakker - melissa.steenbakker@student.uva.nl
 
