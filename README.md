@@ -17,6 +17,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+      <ul>
+        <li><a href="#file-descriptions">File Descriptions</a></li>
+      </ul>
     <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
