@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-import matplotlib.pyplot as plt
 import numpy as np
 from importdata import load_chestmnist_dataset
 
