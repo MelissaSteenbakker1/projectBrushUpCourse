@@ -1,3 +1,4 @@
+<a id="readme-top"></a>
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -16,11 +17,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
 
@@ -157,21 +154,20 @@ The evaluation script loads the trained CNN model and calculates the macro ROC A
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## File Descriptions
-* ```baseline.py``` runs the Logistic Regression baseline model.
-* ```evaluate.py``` evaluates the trained CNN model on the test set.
-* ```importdata.py``` loads the ChestMNIST dataset and creates the datasets.
-* ```model.py``` defines the CNN.
-* ```pytorch.py``` checks the PyTorch installation and whether a GPU is available.
-* ```train.py``` trains the CNN model and saves the best performing model.
-* ```configs/cnn.yaml``` stores the training configuration, such as the batch size, learning rate and number of epochs.
+* `baseline.py` runs the Logistic Regression baseline model.
+* `evaluate.py` evaluates the trained CNN model on the test set.
+* `importdata.py` loads the ChestMNIST dataset and creates the datasets.
+* `model.py` defines the CNN.
+* `pytorch.py` checks the PyTorch installation and whether a GPU is available.
+* `train.py` trains the CNN model and saves the best performing model.
+* `configs/cnn.yaml` stores the training configuration, such as the batch size, learning rate and number of epochs.
 * `data/splits/` contains CSV files with the sample IDs for the training, validation and test sets.
-* ```requirements.txt``` lists the Python packages needed to run the project.
-* ```best_model.pth``` stores the saved model weights.
+* `requirements.txt` lists the Python packages needed to run the project.
+* `best_model.pth` stores the saved model weights.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Authors
 * Kai
 * Melissa
-
-
-[JQuery-url]: https://jquery.com 
 
