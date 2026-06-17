@@ -173,6 +173,10 @@ Loads the most recent trained model from `outputs/` and prints a side-by-side co
 * `data/splits/` contains CSV files with the sample IDs for the training, validation and test sets.
 * `requirements.txt` lists the Python packages needed to run the project.
 
+## TODO
+Add discussion, limitation and model errors.
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Authors
