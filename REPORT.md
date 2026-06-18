@@ -43,7 +43,13 @@ This shows that the distribution across the splits is similar. However, within t
 - Optimizer: Adaptive Moment Estimation (Adam)
 - Loss: BCEWithLogitsLoss
 
-Misschien hier iets over architectuur van de CNN, en bijvoorbeeld keuze van de optimizer (Adam is wel de beste) en de loss function.
+The architecture of the CNN consists of two convolutional layers. Following this is the classifier. The first convolutional layer uses 16 filters with a kernel size of 3×3. This is to train itself on the basic patterns. In the second layer consist of 32 layers which allows the network to train itself on more complex patterns. After each convolutional layer there is a ReLu function this reduces the vanishing gradient problem and makes it possible to train faster and more stable. Then the output is converted into a one-dimensional vector of 1568 values (32 × 7 × 7). The flattened vector is passed to a connected layer with 128 neurons. This layer acts as a classifier by combining the features extracted by the convolutional layers. The final output layer then produces one prediction (logit) for each of the 14 chest condition labels.
+
+##### Optimizer
+The CNN was trained using the Adam (Adaptive Moment Estimation) optimizer. This optimizer updated the weights of the neural network after each batch based on the computed gradients. Therefor, Adam adapts the learning rate inficidually for each model parameter. This results in faster and more stable training and thereby using little hyperparameter.
+
+##### Loss function
+The model uses BCEWithLogitsLoss because ChestMNIST is a multi-label classification dataset. Which means that an image can belong to multiple chest conditions. BCEWithLogitsLoss treats each of the 14 output labels as an independent binary classification problem, making it appropriate for multi-label classification.
 
 ### Results
 | Model | Validation AUC | Test AUC |
