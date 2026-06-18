@@ -120,7 +120,7 @@ Prints split sizes, label distributions, and checks for class imbalance. Saves a
 
 Before training the CNN model, check the configuration file:
 ```
-configs/cnn.yaml
+configs/config.yaml
 ```
 This file contains the training settings both the CNN and the baseline model, such as the batch size, learning rate, number of epochs and baseline hyperparameters.
 
@@ -134,7 +134,7 @@ epochs: 25
 
 baseline:
   max_iter: 1000
-  class_weight: balanced
+  class_weight:
   solver: lbfgs
   C: 0.1
 ```
