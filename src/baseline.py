@@ -1,3 +1,7 @@
+# Authors: 144112337 and 13801554
+# Date: 18-06-2026
+# Course: 9A2
+
 import time
 import numpy as np
 from sklearn.linear_model import LogisticRegression
