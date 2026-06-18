@@ -114,7 +114,7 @@ This script loads the ChestMNIST dataset and creates DataLoaders for the trainin
 ### 2. Inspect the Data
 
 ```
-python src/inspect_data.py
+python src/data_inspect.py
 ```
 Prints split sizes, label distributions, and checks for class imbalance. Saves an image montage to `outputs/images/`. Run this before training to check the data.
 
