@@ -23,7 +23,7 @@ def check_labels(name, dataset):
 
     # Amount of positives per label
     label_sums = labels.sum(axis=0)
-    print("Positives per label (train dataset):", label_sums)
+    print(f"Positives per label ({name} dataset):", label_sums)
 
     # Amount of samples with at least one positive label
     any_pos = (labels.sum(axis=1) > 0)
