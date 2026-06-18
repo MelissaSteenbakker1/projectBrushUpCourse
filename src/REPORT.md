@@ -1,27 +1,30 @@
 # Report
 
+This report summarises the experimental setup, results and interpretation for the MedMNIST project. It describes how the data is preprocessed, how the baseline and CNN models are configured and trained, and how their performance is evaluated and compared. It also discusses limitations of the current approach and possible future directions for improvement.
+
+
 ## Evaluation
-### Datasets
-* Train batches: 1227
-* Validation batches: 176
-* Test batches: 351
-* Image batch shape: torch.Size([64, 1, 28, 28])
-* Label batch shape: torch.Size([64, 14])
+### Dataset
+| Split | Samples (n) | Batches (n) |
+|---|---|---|
+| Train | 78,468 (subset: 10,000) | 1227 |
+| Validation | 11,219 | 176 |
+| Test | 22,433 | 351 |
+* Both models are trained on a subset of 10,000 samples (out of 78,468) to keep the training time manageable during experimentation. This  limitation is discussed further in the limitations section.
+* Image batch shape: `(64, 1, 28, 28)` grayscale, 28x28 pixels.
+* Label batch shape: `(64, 14)` 14 multi-label chest conditions.
 
-From data_inspect.py:
-#### Trainset
-* 45.9% have at least one positive label
-* 54.1% have all-zero labels
+#### Label distribution across splits
+Using `data_inspect.py`:
 
-#### Validationset
-* 45.8% positive
-* 54.2% all-zero
+| Split | >0 positive labels | All-zero labels |
+|---|---|---|
+| Train | 45.9% | 54.1% |
+| Validation | 45.8% | 54.2% |
+| Test | 46.8% | 53.2% |
 
-#### Testset
-* 46.8% positive
-* 53.2% all-zero
+This shows that the distribution across the splits is similar. However, within the positive samples, some conditions are rarer than others, which may introduce some class imbalance.
 
-This shows that the distribution across the splits is similar.
 
 ### Results baseline model
 * Validation AUC: 0.6527
