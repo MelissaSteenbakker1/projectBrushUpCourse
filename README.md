@@ -6,6 +6,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#built-with">Project Brush-Up Course</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -17,9 +18,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-      <ul>
-        <li><a href="#file-descriptions">File Descriptions</a></li>
-      </ul>
+    <li><a href="#evaluation--interpretation">Evaluation & Interpretation</a></li>
+    <li><a href="#file-descriptions">File Descriptions</a></li>
     <li><a href="#authors">Authors</a></li>
   </ol>
 </details>
@@ -28,7 +28,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-### Project Brush Up Course
+### Project Brush-Up Course
 
 This project investigates the use of machine learning and deep learning for medical image classification using the ChestMNIST dataset from MedMNIST.
 
@@ -38,8 +38,6 @@ The goal is to compare a traditional machine learning approach (Logistic Regress
 * Task: Multi-label classification of chest X-ray images
 * Number of labels: 14
 * Image size: 28 × 28 pixels (grayscale)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 

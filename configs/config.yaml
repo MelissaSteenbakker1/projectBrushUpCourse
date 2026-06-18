@@ -6,6 +6,6 @@ epochs: 25
 
 baseline:
   max_iter: 1000
-  class_weight: balanced
+  class_weight: 
   solver: lbfgs
   C: 0.1
