@@ -166,7 +166,7 @@ Loads the most recent trained model from `outputs/` and prints a side-by-side co
 * `src/baseline.py` runs the Logistic Regression baseline model.
 * `src/evaluate.py` evaluates the trained CNN model on the test set.
 * `src/importdata.py` loads the ChestMNIST dataset and creates the datasets.
-* `src/inspect_data.py` inspects the data: shapes, label distribution and image montage
+* `src/data_inspect.py` inspects the data: shapes, label distribution and image montage
 * `src/model.py` defines the CNN.
 * `src/train.py` trains the CNN model and saves the best performing model.
 * `configs/cnn.yaml` stores the training configuration, such as the batch size, learning rate and number of epochs.
@@ -176,10 +176,9 @@ Loads the most recent trained model from `outputs/` and prints a side-by-side co
 ## TODO
 Add discussion, limitation and model errors.
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Authors
 * Kai Rook - kai.rook@student.uva.nl
-* Melissa Steenbakker - melissa.steenbakker@student.uva.nl
+* Melissa - m.l.steenbakker@student.uva.nl
 
