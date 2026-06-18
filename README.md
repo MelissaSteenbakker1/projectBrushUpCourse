@@ -168,13 +168,15 @@ For a detailed description of the experiments, results, and discussion of limita
 
 ## File Descriptions
 * `src/baseline.py` runs the Logistic Regression baseline model.
-* `src/evaluate.py` evaluates the trained CNN model on the test set.
+* `src/evaluate.py` evaluates the trained CNN model on the validation and test set, and compares them to the baseline model.
 * `src/importdata.py` loads the ChestMNIST dataset and creates the datasets.
 * `src/data_inspect.py` inspects the data: shapes, label distribution and image montage
 * `src/model.py` defines the CNN.
 * `src/train.py` trains the CNN model and saves the best performing model.
-* `configs/cnn.yaml` stores the training configuration, such as the batch size, learning rate and number of epochs.
+* `configs/config.yaml` stores the training configuration and baseline hyperparameters for the CNN and the baseline model.
 * `data/splits/` contains CSV files with the sample IDs for the training, validation and test sets.
+* `outputs/` is generated automatically at runtime. Contains the baseline results and CNN run folders (model weights, config, metrics).
+
 * `requirements.txt` lists the Python packages needed to run the project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
