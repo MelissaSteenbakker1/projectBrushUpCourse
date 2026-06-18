@@ -28,7 +28,7 @@ This shows that the distribution across the splits is similar.
 * Test AUC: 0.6389
 
 ### Results CNN model
-Trained run: run_20260618_104656
+Trained run: run_20260618_104656  
 Epoch 14/25 — Train Loss: 0.1597 | Val Loss: 0.1631
 
 * Baseline Test ROC AUC (macro): 0.6389
