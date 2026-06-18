@@ -118,30 +118,35 @@ python src/data_inspect.py
 ```
 Prints split sizes, label distributions, and checks for class imbalance. Saves an image montage to `outputs/images/`. Run this before training to check the data.
 
-### 3. Run the Baseline Model
-
-To run the Logistic Regression baseline, use:
-```
-python src/baseline.py
-```
-The baseline model is a traditional machine learning model. It flattens each 28 × 28 image into a vector of 784 pixel values and trains a Logistic Regression classifier for each of the 14 labels. Finally, it saves the val and test ROC AUC scores to `outputs/baseline/baseline_results.json`.
-
-### 4. Check the Configuration
+### 3. Check the Configuration
 
 Before training the CNN model, check the configuration file:
 ```
 configs/cnn.yaml
 ```
-This file contains the training settings for the CNN model, such as the batch size, learning rate and number of epochs.
+This file contains the training settings both the CNN and the baseline model, such as the batch size, learning rate, number of epochs and baseline hyperparameters.
 
 Our configuration:
 ```yaml
+train_subset: 10000
 seed: 42
 batch_size: 64
 learning_rate: 0.001
 epochs: 25
-train_subset: 1000
+
+baseline:
+  max_iter: 1000
+  class_weight: balanced
+  solver: lbfgs
+  C: 0.1
 ```
+### 4. Run the Baseline Model
+
+To run the Logistic Regression baseline, use:
+```
+python src/baseline.py
+```
+The baseline model is a traditional machine learning model. It flattens each 28 × 28 image into a vector of 784 pixel values and trains a Logistic Regression classifier for each of the 14 labels using the settings from `configs/config.yaml`. Finally, it saves the val and test ROC AUC scores to `outputs/baseline/baseline_results.json`.
 
 ### 5. Train the CNN Model
 
@@ -149,7 +154,7 @@ To train the Convolutional Neural Network, use:
 ```
 python src/train.py
 ```
-The training script uses the settings from ``` configs/cnn.yaml ```
+The training script uses the settings from ``` configs/config.yaml ```
 
 Each run is saved to `outputs/run_<timestamp>/` containing the best model weights (`model.pt`), settings used (`config.yaml`) and training metrics (`metrics.json`).
 ### 6. Evaluate the CNN Model
@@ -160,7 +165,8 @@ python src/evaluate.py
 ```
 Loads the most recent trained model from `outputs/` and prints a side-by-side comparison of the baseline and CNN macro ROC AUC on the test set.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Evaluation & Interpretation
+For a detailed description of the experiments, results, and discussion of limitations, see the [project report](src/REPORT.md).
 
 ## File Descriptions
 * `src/baseline.py` runs the Logistic Regression baseline model.
@@ -172,9 +178,6 @@ Loads the most recent trained model from `outputs/` and prints a side-by-side co
 * `configs/cnn.yaml` stores the training configuration, such as the batch size, learning rate and number of epochs.
 * `data/splits/` contains CSV files with the sample IDs for the training, validation and test sets.
 * `requirements.txt` lists the Python packages needed to run the project.
-
-## Evaluation & Interpretation
-For a detailed description of the experiments, results, and discussion of limitations, see the [project report](src/REPORT.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
