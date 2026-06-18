@@ -47,16 +47,16 @@ This shows that the distribution across the splits is similar. However, within t
 | Model | Validation AUC | Test AUC |
 |---|---|---|
 | Logistic Regression (baseline) | 0.6643 | 0.6517 |
-| CNN |  | 0.7387 |
+| CNN | 0.7422 | 0.7387 |
 
 The best CNN model was taken at epoch 11/25 (Train Loss: 0.1613, Val Loss: 0.1630).
 
 ## Interpretation
 
 ## Limitations
-## Limitations
-- Changing class_weight from balanced to none improved AUC
+- Changing class_weight for CNN from balanced to none improved AUC
 - Lowering max_iter gave convergence warnings, increasing had no effect
+- Adding regularisation 0.1 (Default 1.0) to config imrpoved AUC
 - 10k subset
 
 ## Future Improvements

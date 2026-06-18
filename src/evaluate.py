@@ -14,7 +14,7 @@ def evaluate(batch_size=64):
     print(f"Using device: {device}")
 
     # Only need the test loader
-    _, _, test_loader = get_chestmnist_loaders(batch_size=batch_size)
+    _, val_loader, test_loader = get_chestmnist_loaders(batch_size=batch_size)
 
     model = ChestMNISTModel(num_classes=14).to(device)
 
@@ -25,6 +25,22 @@ def evaluate(batch_size=64):
     model.load_state_dict(torch.load(latest, map_location=device))
     model.eval()
 
+    # Validation loop
+    val_outputs = []
+    val_labels = []
+    with torch.no_grad():
+        for images, labels in val_loader:
+            images = images.to(device)
+            labels = labels.float().to(device)
+            probs = torch.sigmoid(model(images))
+            val_outputs.append(probs.cpu().numpy())
+            val_labels.append(labels.cpu().numpy())
+
+    val_outputs = np.concatenate(val_outputs, axis=0)
+    val_labels = np.concatenate(val_labels, axis=0)
+    val_auc = roc_auc_score(val_labels, val_outputs, average="macro")
+
+    # Test loop
     all_outputs = []
     all_labels = []
     with torch.no_grad():
@@ -46,8 +62,10 @@ def evaluate(batch_size=64):
     
     with open("outputs/baseline/baseline_results.json") as f:
         baseline = json.load(f)
-    print(f"Baseline Test ROC AUC (macro): {baseline['test_auc']:.4f}")
-    print(f"CNN      Test ROC AUC (macro):  {test_auc:.4f}")
+    print(f"Baseline: Val  ROC AUC (macro): {baseline['val_auc']:.4f}")
+    print(f"Baseline: Test ROC AUC (macro): {baseline['test_auc']:.4f}")
+    print(f"CNN:      Val  ROC AUC (macro): {val_auc:.4f}")
+    print(f"CNN:      Test ROC AUC (macro): {test_auc:.4f}")
 
 
 if __name__ == "__main__":
