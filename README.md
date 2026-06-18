@@ -183,5 +183,5 @@ For a detailed description of the experiments, results, and discussion of limita
 
 ## Authors
 * Kai Rook - kai.rook@student.uva.nl
-* Melissa - m.l.steenbakker@student.uva.nl
+* Melissa Steenbakker - m.l.steenbakker@student.uva.nl
 
