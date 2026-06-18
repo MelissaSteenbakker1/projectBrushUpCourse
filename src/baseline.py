@@ -7,7 +7,7 @@ from importdata import load_chestmnist_dataset
 import yaml
 import json
 
-with open("configs/cnn.yaml") as f:
+with open("configs/config.yaml") as f:
     config = yaml.safe_load(f)
 
 def dataset_to_flat_arrays(dataset):
@@ -59,9 +59,10 @@ def main():
 
     model = MultiOutputClassifier(
         LogisticRegression(
-            max_iter=100,
-            class_weight="balanced",
-            solver="liblinear"
+            max_iter=config["baseline"]["max_iter"],
+            class_weight=config["baseline"]["class_weight"],
+            solver=config["baseline"]["solver"],
+            C=config["baseline"]["C"]
         )
     )
 
@@ -83,7 +84,17 @@ def main():
     print(f"Test AUC: {test_auc:.4f}")
 
     # Save the baseline model's results for later comparison
-    results = {"val_auc": round(val_auc, 4), "test_auc": round(test_auc, 4)}
+    results = {
+        "config": {
+        "max_iter": config["baseline"]["max_iter"],
+        "solver": config["baseline"]["solver"],
+        "C": config["baseline"]["C"],
+        "class_weight": config["baseline"]["class_weight"],
+        "train_subset": config["train_subset"]
+    },
+    "val_auc": round(val_auc, 4),
+    "test_auc": round(test_auc, 4)
+}
     with open("outputs/baseline/baseline_results.json", "w") as f:
         json.dump(results, f)
     print("Saved baseline results to outputs/baseline/baseline_results.json")

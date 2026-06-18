@@ -7,7 +7,7 @@ import os
 import json
 from datetime import datetime
 
-with open("./configs/cnn.yaml") as f:
+with open("./configs/config.yaml") as f:
     config = yaml.safe_load(f)
 
 
