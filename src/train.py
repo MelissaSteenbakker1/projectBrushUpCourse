@@ -55,7 +55,7 @@ def train():
             optimizer.zero_grad()       # clear gradients from previous step
             outputs = model(images)     # forward pass
             loss = criterion(outputs, labels)
-            loss.backward()             # compute gradients
+            loss.backward()             # compute gradients (backpropagation)
             optimizer.step()            # update weights
 
             train_loss += loss.item()
